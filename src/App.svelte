@@ -2,10 +2,11 @@
 	import DownloadButton from "./components/DownloadButton.svelte";
 
 	let url = "/";
-	let fileName = "testPdf.pdf";
+	let fileName = "";
 
 	async function handleImageUpload(event) {
 		const file = event.target.files[0];
+		fileName = "Processed-" + file.name;
 		const formData = new FormData();
 		formData.append("testFile", file);
 
@@ -16,9 +17,6 @@
 		});
 		const body = await response.blob();
 		const blob = new Blob([body], { type: "application/pdf" });
-
-		// const textStream = body.pipeThrough(new ReadableStream());
-		// const outFile = new File([body], { type: "application/pdf" });
 
 		url = URL.createObjectURL(blob);
 	}
@@ -31,8 +29,10 @@
 		how to build Svelte apps.
 	</p>
 	<input type="file" id="fileUpload" on:change={handleImageUpload} />
-	<a href={url} target="_blank">URL OF FILE</a>
-	<!-- <DownloadButton fileURL={url} {fileName} text="Download PDF" /> -->
+	{#if url != "/"}
+		<a href={url} target="_blank">URL OF FILE</a>
+		<DownloadButton fileURL={url} {fileName} text="Download PDF" />
+	{/if}
 </main>
 
 <style>
@@ -56,4 +56,3 @@
 		}
 	}
 </style>
-
