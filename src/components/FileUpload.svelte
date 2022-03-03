@@ -1,20 +1,52 @@
 <script>
-	import { file1, file2 } from "../store";
+	import { fileValue1, fileValue2, stepIndex } from "../store";
 	export let index;
 
-	function handleFile(event) {
+	function uploadFile(err, fileItem) {
 		if (index < 1 && index > 2) return;
 
-		const file = event.target.files[0];
+		const file = fileItem.file;
 		if (index == 1) {
-			file1.set(file);
+			fileValue1.set(file);
 		} else {
-			file2.set(file);
+			fileValue2.set(file);
 		}
+	}
+	function removeFile() {
+		if (index < 1 && index > 2) return;
+
+		if (index == 1) {
+			fileValue1.set(null);
+			stepIndex.set(0);
+		} else {
+			fileValue2.set(null);
+			stepIndex.set(1);
+		}
+	}
+
+	import "filepond/dist/filepond.css";
+	import FilePond, { registerPlugin, supported } from "svelte-filepond";
+	import FilePondPluginPdfPreview from "filepond-plugin-pdf-preview";
+
+	registerPlugin(FilePondPluginPdfPreview);
+
+	let pond;
+
+	let div;
+	let height = 320;
+	function getHeight() {
+		height = div.clientHeight - 55;
 	}
 </script>
 
-<div>
-	<p>File nᵒ2</p>
-	<input type="file" id="fileUpload{index}" on:change={handleFile} />
+<div class="w-1/2" bind:this={div}>
+	<FilePond
+		bind:this={pond}
+		name="FileUploader"
+		allowMultiple={false}
+		oninit={getHeight}
+		onaddfile={uploadFile}
+		onremovefile={removeFile}
+		pdfPreviewHeight={height}
+	/>
 </div>
