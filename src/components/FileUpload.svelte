@@ -40,7 +40,7 @@
 
 	import "filepond/dist/filepond.css";
 	import "filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css";
-	import { FilePond, registerPlugin } from "svelte-filepond";
+	import FilePond, { registerPlugin } from "svelte-filepond";
 	import FilePondPluginPdfPreview from "filepond-plugin-pdf-preview";
 
 	registerPlugin(FilePondPluginPdfPreview);
