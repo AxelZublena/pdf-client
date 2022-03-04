@@ -11,23 +11,24 @@
 	let index;
 	let file1Name;
 	let file2Name;
-	// let file1 = new File(["file1"], "FILE_1");
-	// let file2 = new File(["file2"], "FILE_2");
 	let file1 = undefined;
 	let file2 = undefined;
 	fileValue1.subscribe((value) => {
 		file1 = value;
-		file1Name = value.name;
+		if (value != null) {
+			file1Name = value.name;
+		}
 	});
 	fileValue2.subscribe((value) => {
 		file2 = value;
-		file2Name = value.name;
+		if (value != null) {
+			file2Name = value.name;
+		}
 	});
 
 	async function handleImageUpload() {
 		if (file1 == 0 || file2 == 0) return 1;
 
-		// file1Name = "Processed-" + file1.name;
 		const formData = new FormData();
 		formData.append("file1", file1);
 		formData.append("file2", file2);
@@ -72,5 +73,6 @@
 			}}
 			hidden>Insert the PDF!</button
 		>
+		<button on:click={() => stepIndex.set(1)}>Previous step</button>
 	</div>
 </div>

@@ -21,6 +21,7 @@
 	<div class="w-1/2">
 		<h2 class="text-3xl p-5">Step 2</h2>
 		<p>Upload the file to be inserted in {file1Name}</p>
+		<button on:click={() => stepIndex.set(0)}>Previous step</button>
 		<button bind:this={button} on:click={() => stepIndex.set(2)} hidden
 			>Next step</button
 		>
