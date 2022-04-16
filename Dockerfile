@@ -9,6 +9,7 @@ COPY package-lock.json ./
 RUN npm install
 COPY . ./
 RUN npm run build
+RUN echo $(ls public)
 
 FROM nginx:alpine
 COPY --from=build /app/public /usr/share/nginx/html

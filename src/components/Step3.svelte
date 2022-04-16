@@ -33,7 +33,7 @@
 		formData.append("file1", file1);
 		formData.append("file2", file2);
 
-		const response = await fetch("http://localhost:8080/", {
+		const response = await fetch("http://localhost:3000/", {
 			method: "POST",
 			body: formData,
 			mode: "cors",

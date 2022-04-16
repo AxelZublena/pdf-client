@@ -1,10 +1,10 @@
 # Build container
 ```bash
-docker build . -t svelte-docker
+docker build . -t pdf-client
 ```
 
 # Run container
 ```bash
-docker run --rm --name=svelte-docker -p 8080:80 svelte-docker
+docker run --rm --name=pdf-client -p 8080:80 pdf-client
 ```
 Access the app at `http://localhost:8080/`
