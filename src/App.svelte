@@ -9,6 +9,10 @@
 	stepIndex.subscribe((value) => (step = value));
 </script>
 
+<svelte:head>
+	<title>PDF Inserter</title>
+</svelte:head>
+
 <main class="flex flex-col h-full p-5 text-center">
 	<h1 class="text-5xl text-orange-600 font-thin">PDF Inserter</h1>
 	{#if step == 0}
