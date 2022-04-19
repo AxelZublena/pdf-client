@@ -1,11 +1,5 @@
 <script>
-	import {
-		fileValue1,
-		fileValue2,
-		pageIndex,
-		stepIndex,
-		processedFileValue,
-	} from "../store";
+	import { fileValue1, fileValue2, pageIndex, stepIndex, processedFileValue } from '../../store';
 
 	let button;
 	let index;
@@ -30,16 +24,21 @@
 		if (file1 == 0 || file2 == 0) return 1;
 
 		const formData = new FormData();
-		formData.append("file1", file1);
-		formData.append("file2", file2);
+		formData.append('file1', file1);
+		formData.append('file2', file2);
 
-		const response = await fetch("http://localhost:3000/", {
-			method: "POST",
+		const response = await fetch(import.meta.env.VITE_SERVER_URL, {
+			method: 'POST',
 			body: formData,
-			mode: "cors",
+			mode: 'cors'
 		});
+		// const response = await fetch('http://localhost:3000/', {
+		// 	method: 'POST',
+		// 	body: formData,
+		// 	mode: 'cors'
+		// });
 		const body = await response.blob();
-		const blob = new Blob([body], { type: "application/pdf" });
+		const blob = new Blob([body], { type: 'application/pdf' });
 		processedFileValue.set(blob);
 
 		return 0;
@@ -58,7 +57,7 @@
 			max="100"
 			class="ml-2 px-2 py-1"
 			bind:value={index}
-			on:change={button.removeAttribute("hidden")}
+			on:change={button.removeAttribute('hidden')}
 		/>
 
 		<button
@@ -68,7 +67,7 @@
 					stepIndex.set(3);
 					pageIndex.set(pageIndex);
 				} else {
-					alert("Missing files");
+					alert('Missing files');
 				}
 			}}
 			hidden>Insert the PDF!</button

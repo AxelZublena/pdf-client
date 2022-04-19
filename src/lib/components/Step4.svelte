@@ -1,9 +1,9 @@
 <script>
-	import { fileValue1, stepIndex, processedFileValue } from "../store";
-	import DownloadButton from "./DownloadButton.svelte";
+	import { fileValue1, stepIndex, processedFileValue } from '../../store';
+	import DownloadButton from './DownloadButton.svelte';
 
 	let fileName;
-	fileValue1.subscribe((value) => (fileName = "Processed-" + value.name));
+	fileValue1.subscribe((value) => (fileName = 'Processed-' + value.name));
 	let processedFile;
 	processedFileValue.subscribe((value) => (processedFile = value));
 

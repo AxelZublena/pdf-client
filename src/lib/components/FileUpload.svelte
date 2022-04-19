@@ -1,5 +1,5 @@
 <script>
-	import { fileValue1, fileValue2, stepIndex } from "../store";
+	import { fileValue1, fileValue2, stepIndex } from '../../store';
 	export let index;
 
 	let file1;
@@ -30,18 +30,18 @@
 	}
 	function handleFiles() {
 		if (index == 1) {
-			if (file1.name === "defaultFile1" && file1.size === 0) return;
+			if (file1.name === 'defaultFile1' && file1.size === 0) return;
 			return [file1];
 		} else {
-			if (file2.name === "defaultFile2" && file2.size === 0) return;
+			if (file2.name === 'defaultFile2' && file2.size === 0) return;
 			return [file2];
 		}
 	}
 
-	import "filepond/dist/filepond.css";
-	import "filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css";
-	import FilePond, { registerPlugin } from "svelte-filepond";
-	import FilePondPluginPdfPreview from "filepond-plugin-pdf-preview";
+	import 'filepond/dist/filepond.css';
+	import 'filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css';
+	import FilePond, { registerPlugin } from 'svelte-filepond';
+	import FilePondPluginPdfPreview from 'filepond-plugin-pdf-preview';
 
 	registerPlugin(FilePondPluginPdfPreview);
 

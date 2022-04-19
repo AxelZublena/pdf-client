@@ -1,14 +1,25 @@
 # syntax=docker/dockerfile:1
-FROM node:17-alpine AS build
+FROM mhart/alpine-node:16
 
+# install dependencies
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# copy files and install dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
-COPY . ./
+# Copy all local files into the image.
+COPY . .
+
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=build /app/public /usr/share/nginx/html
+###
+# Only copy over the Node pieces we need
+# ~> Saves 35MB
+###
+FROM mhart/alpine-node:slim-16
+
+WORKDIR /app
+COPY --from=0 /app .
+COPY . .
+
+EXPOSE 8080
+CMD ["node", "./build"]
