@@ -22,4 +22,5 @@ COPY --from=0 /app .
 COPY . .
 
 EXPOSE 8080
-CMD ["node", "./build"]
+# CMD ["PORT=8080 node", "./build"]
+CMD sh -C cmd.sh
