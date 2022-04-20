@@ -1,6 +1,7 @@
 <script>
 	import '../global.css';
-	console.log(import.meta.env.VITE_SERVER_URL);
+	console.log('VITE_SERVER_URL=', import.meta.env.VITE_SERVER_URL);
+	console.log('SERVER_URL=', process.env.SERVER_URL);
 </script>
 
 <slot />
