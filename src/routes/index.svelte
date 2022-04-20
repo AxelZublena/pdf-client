@@ -6,11 +6,8 @@
 	import Step3 from '$lib/components/Step3.svelte';
 	import Step4 from '$lib/components/Step4.svelte';
 
-	import dotenv from 'dotenv';
-	dotenv.config();
-
-	const server_url = process.env.SERVER_URL;
-	console.log('SERVER_URL=', server_url);
+	const server_url = import.meta.env.VITE_SERVER_URL;
+	console.log('VITE_SERVER_URL=', server_url);
 
 	let step;
 	stepIndex.subscribe((value) => (step = value));
