@@ -6,6 +6,12 @@
 	import Step3 from '$lib/components/Step3.svelte';
 	import Step4 from '$lib/components/Step4.svelte';
 
+	import dotenv from 'dotenv';
+	dotenv.config();
+
+	const server_url = process.env.SERVER_URL;
+	console.log('SERVER_URL=', server_url);
+
 	let step;
 	stepIndex.subscribe((value) => (step = value));
 </script>
@@ -21,7 +27,7 @@
 	{:else if step == 1}
 		<Step2 />
 	{:else if step == 2}
-		<Step3 />
+		<Step3 url={server_url} />
 	{:else if step == 3}
 		<Step4 />
 	{/if}

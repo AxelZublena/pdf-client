@@ -1,6 +1,7 @@
 <script>
 	import { fileValue1, fileValue2, pageIndex, stepIndex, processedFileValue } from '../../store';
 
+	export let url;
 	let button;
 	let index;
 	let file1Name;
@@ -27,7 +28,8 @@
 		formData.append('file1', file1);
 		formData.append('file2', file2);
 
-		const response = await fetch(import.meta.env.VITE_SERVER_URL, {
+		console.log('POST to', url);
+		const response = await fetch(url, {
 			method: 'POST',
 			body: formData,
 			mode: 'cors'
